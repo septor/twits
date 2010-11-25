@@ -2,7 +2,6 @@
 
 if (!defined('e107_INIT')) { exit; }
 include_lan(e_PLUGIN."twits_menu/languages/".e_LANGUAGE.".php");
-include(e_HANDLER."date_handler.php");
 if(file_exists(THEME."twits_template.php")){
 	include_once(THEME."twits_template.php");
 }else{
