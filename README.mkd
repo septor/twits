@@ -1,7 +1,7 @@
 # IMPORTANT!!!
 
 Before this plugin or menu item will work correctly with e107 you will need to rename the directory you're presented with to `twits_menu`. In most cases this can be done
-inside the archieve program you use to decompress the tar/zipball.
+inside the archive program you use to decompress the tar/zipball.
 
 # Twits
 
