@@ -22,7 +22,10 @@ if($menu_pref['twits_menu']['username'] != ""){
 		return $text;
 	}
 
-	$status = explode(": ", parseContent($xml->channel->item[0]->title));
+	$status = parseContent($xml->channel->item[0]->title);
+
+	$username = str_replace(":", "", substr($status, 0, strpos($status, ":")));
+	$tweet = substr($status, strpos($status, ":")+2);
 
 	$text = str_replace(
 		array(
@@ -30,7 +33,7 @@ if($menu_pref['twits_menu']['username'] != ""){
 		"%_DATESTAMP_%"
 	),
 		array(
-		"<a href='".$xml->channel->link."'>".$status[0]."</a>: ".$status[1],
+		"<a href='".$xml->channel->link."'>".$username."</a>: ".$tweet,
 		"<a href='".$xml->channel->item[0]->link."'>".$gen->convert_date(strtotime(substr($xml->channel->item[0]->pubDate, 0, -6)))."</a>"
 		),
 	$TWITSTEMPLATE);
