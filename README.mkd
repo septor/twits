@@ -20,5 +20,6 @@ Alternatively, you can save the `twits_template.php` file inside your theme fold
 
 The following tags are converted inside the template file:
 
+* `%_TWEETER_%` → Displays your Twitter username, which links to your Twitter profile.
 * `%_TWEET_%` → Displays your current status. #tags and @mentions are automatically converted.
 * `%_DATESTAMP_%` → The datestamp of your status update. Converted using e107's convert_date() function.

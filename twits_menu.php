@@ -10,6 +10,7 @@ if(file_exists(THEME."twits_template.php")){
 }
 
 $gen = new convert();
+$date_format = (($menu_pref['twits_menu']['datestyle']) ? $menu_pref['twits_menu']['datestyle'] : "long");
 
 if($menu_pref['twits_menu']['username'] != ""){
 	$xml = simplexml_load_file("https://twitter.com/statuses/user_timeline/".$menu_pref['twits_menu']['username'].".rss");
@@ -29,12 +30,14 @@ if($menu_pref['twits_menu']['username'] != ""){
 
 	$text = str_replace(
 		array(
+		"%_TWEETER_%",
 		"%_TWEET_%",
 		"%_DATESTAMP_%"
 	),
 		array(
-		"<a href='".$xml->channel->link."'>".$username."</a>: ".$tweet,
-		"<a href='".$xml->channel->item[0]->link."'>".$gen->convert_date(strtotime(substr($xml->channel->item[0]->pubDate, 0, -6)))."</a>"
+		"<a href='".$xml->channel->link."'>".$username."</a>",
+		$tweet,
+		"<a href='".$xml->channel->item[0]->link."'>".$gen->convert_date(strtotime(substr($xml->channel->item[0]->pubDate, 0, -6)), $date_format)."</a>"
 		),
 	$TWITSTEMPLATE);
 

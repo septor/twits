@@ -38,6 +38,16 @@ $text = "
 	<input type='text' class='tbox' name='pref[username]' value='".(($menu_pref['twits_menu']['username']) ? $menu_pref['twits_menu']['username'] : "")."' />
 	</td>
 	</tr>
+	
+	<tr>
+	<td style='width:30%' class='forumheader3'>".TWITS_LAN007."</td>
+	<td style='width:70%' class='forumheader3'>
+	<select name='pref[datestyle]' class='tbox'>";
+	foreach(array('long', 'short', 'forum') as $format){
+		$format_dropbox .= "<option value='".$format."'".($format == $menu_pref['twits_menu']['datestyle'] ? " selected" : "").">".$gen->convert_date(time(), $format)." (".$format.")</option>";
+	}
+	$text .= "</td>
+	</tr>
 
 	<tr>
 	<td colspan='2' class='forumheader' style='text-align: center;'><input class='button' type='submit' name='update_menu' value='".TWITS_LAN003."' /></td>
