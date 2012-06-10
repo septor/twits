@@ -18,6 +18,9 @@ require_once("../../class2.php");
 if (!getperms("4")) { header("location:".e_BASE."index.php"); exit ;}
 include_lan(e_PLUGIN."twits_menu/languages/".e_LANGUAGE.".php");
 require_once(e_ADMIN."auth.php");
+include_once(e_HANDLER."date_handler.php");
+
+$gen = new convert();
 
 if ($_POST['update_menu']) {
 	unset($menu_pref['twits_menu']);
@@ -44,9 +47,11 @@ $text = "
 	<td style='width:70%' class='forumheader3'>
 	<select name='pref[datestyle]' class='tbox'>";
 	foreach(array('long', 'short', 'forum') as $format){
-		$format_dropbox .= "<option value='".$format."'".($format == $menu_pref['twits_menu']['datestyle'] ? " selected" : "").">".$gen->convert_date(time(), $format)." (".$format.")</option>";
+		$text.= "<option value='".$format."'".($format == $menu_pref['twits_menu']['datestyle'] ? " selected" : "").">".$gen->convert_date(time(), $format)." (".$format.")</option>";
 	}
-	$text .= "</td>
+	$text .= "
+	</select>
+	</td>
 	</tr>
 
 	<tr>
