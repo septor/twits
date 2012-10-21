@@ -13,20 +13,18 @@ $gen = new convert();
 $date_format = (($menu_pref['twits_menu']['datestyle']) ? $menu_pref['twits_menu']['datestyle'] : "long");
 
 if($menu_pref['twits_menu']['username'] != ""){
-	$xml = simplexml_load_file("https://twitter.com/statuses/user_timeline/".$menu_pref['twits_menu']['username'].".rss");
+	$xml = simplexml_load_file("http://api.twitter.com/1/statuses/user_timeline/".$menu_pref['twits_menu']['username'].".xml?count=1&include_rts=0callback=?");
 
 	function parseContent($text){
 		$text = strip_tags($text);
 		$text = preg_replace("/(https?:\/\/[^\s\)]+)/", "<a href='\\1'>\\1</a>", $text);
 		$text = preg_replace("/\#([^\s\ \:\.\;\-\,\!\)\(\"]+)/", "<a href='http://search.twitter.com/search?q=%23\\1'>#\\1</a>", $text);
-		$text = preg_replace("/\@([^\s\ \:\.\;\-\,\!\)\(\"]+)/", "@<a href='http://twitter.com/\\1'>\\1</a>", $text);
+		$text = preg_replace("/\@([^\s\ \:\.\;\-\,\!\)\(\"]+)/", "<a href='http://twitter.com/\\1'>@\\1</a>", $text);
 		return $text;
 	}
 
-	$status = parseContent($xml->channel->item[0]->title);
-
-	$username = str_replace(":", "", substr($status, 0, strpos($status, ":")));
-	$tweet = substr($status, strpos($status, ":")+2);
+	$username = $xml->status->user->screen_name;
+	$tweet = parseContent($xml->status->text);
 
 	$text = str_replace(
 		array(
@@ -35,13 +33,13 @@ if($menu_pref['twits_menu']['username'] != ""){
 		"%_DATESTAMP_%"
 	),
 		array(
-		"<a href='".$xml->channel->link."'>".$username."</a>",
+		"<a href='http://twitter.com/".$username."'>".$username."</a>",
 		$tweet,
-		"<a href='".$xml->channel->item[0]->link."'>".$gen->convert_date(strtotime(substr($xml->channel->item[0]->pubDate, 0, -6)), $date_format)."</a>"
+		"<a href='http://twitter.com/".$username."/status/".$xml->status->id."'>".$gen->convert_date(strtotime($xml->status->created_at, $date_format))."</a>"
 		),
 	$TWITSTEMPLATE);
 
-	$ns->tablerender($xml->channel->title, $text, 'twits');
+	$ns->tablerender("@".$username, $text, 'twits');
 }else{
 	$ns->tablerender(TWITS_LAN005, TWITS_LAN006, 'twits');
 }
