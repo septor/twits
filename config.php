@@ -1,18 +1,4 @@
 <?php
-
-/*
-+ ----------------------------------------------------------------------------+
-|     e107 website system
-|
-|     Copyright (C) 2001-2002 Steve Dunstan (jalist@e107.org)
-|     Copyright (C) 2008-2010 e107 Inc (e107.org)
-|
-|
-|     Released under the terms and conditions of the
-|     GNU General Public License (http://gnu.org)
-+----------------------------------------------------------------------------+
-*/
-
 $eplug_admin = TRUE;
 require_once("../../class2.php");
 if (!getperms("4")) { header("location:".e_BASE."index.php"); exit ;}
@@ -48,6 +34,18 @@ $text = "
 	<select name='pref[datestyle]' class='tbox'>";
 	foreach(array('long', 'short', 'forum') as $format){
 		$text.= "<option value='".$format."'".($format == $menu_pref['twits_menu']['datestyle'] ? " selected" : "").">".$gen->convert_date(time(), $format)." (".$format.")</option>";
+	}
+	$text .= "
+	</select>
+	</td>
+	</tr>
+
+	<tr>
+	<td style='width:30%' class='forumheader3'>".TWITS_LAN008."</td>
+	<td style='width:70%' class='forumheader3'>
+	<select name='pref[tweets]' class='tbox'>";
+	for($i = 1; $i <= 5; $i++){
+		$text .= "<option value='".$i."'".($i == $menu_pref['twits_menu']['tweets'] ? " selected" : "").">".$i."</option>";
 	}
 	$text .= "
 	</select>

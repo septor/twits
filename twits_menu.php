@@ -11,9 +11,11 @@ if(file_exists(THEME."twits_template.php")){
 
 $gen = new convert();
 $date_format = (($menu_pref['twits_menu']['datestyle']) ? $menu_pref['twits_menu']['datestyle'] : "long");
+$tweets = (($menu_pref['twits_menu']['tweets']) ? $menu_pref['twits_menu']['tweets'] : "1");
 
 if($menu_pref['twits_menu']['username'] != ""){
-	$xml = simplexml_load_file("http://api.twitter.com/1/statuses/user_timeline/".$menu_pref['twits_menu']['username'].".xml?count=1&include_rts=0callback=?");
+	$username = $menu_pref['twits_menu']['username'];
+	$xml = simplexml_load_file("http://api.twitter.com/1/statuses/user_timeline/".$username.".xml?count=".$tweets."&include_rts=0callback=?");
 
 	function parseContent($text){
 		$text = strip_tags($text);
@@ -22,22 +24,21 @@ if($menu_pref['twits_menu']['username'] != ""){
 		$text = preg_replace("/\@([^\s\ \:\.\;\-\,\!\)\(\"]+)/", "<a href='http://twitter.com/\\1'>@\\1</a>", $text);
 		return $text;
 	}
-
-	$username = $xml->status->user->screen_name;
-	$tweet = parseContent($xml->status->text);
-
-	$text = str_replace(
-		array(
-		"%_TWEETER_%",
-		"%_TWEET_%",
-		"%_DATESTAMP_%"
-	),
-		array(
-		"<a href='http://twitter.com/".$username."'>".$username."</a>",
-		$tweet,
-		"<a href='http://twitter.com/".$username."/status/".$xml->status->id."'>".$gen->convert_date(strtotime($xml->status->created_at, $date_format))."</a>"
+	$text = "";
+	for($i = 0; $i <= ($tweets - 1); $i++){
+		$text .= str_replace(
+			array(
+			"%_TWEETER_%",
+			"%_TWEET_%",
+			"%_DATESTAMP_%"
 		),
-	$TWITSTEMPLATE);
+			array(
+			"<a href='http://twitter.com/".$username."'>".$username."</a>",
+			parseContent($xml->status[$i]->text),
+			"<a href='http://twitter.com/".$username."/status/".$xml->status[$i]->id."'>".$gen->convert_date(strtotime($xml->status[$i]->created_at, $date_format))."</a>"
+			),
+		$TWITSTEMPLATE);
+	}
 
 	$ns->tablerender("@".$username, $text, 'twits');
 }else{

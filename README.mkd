@@ -4,7 +4,13 @@ Twits is a menu item that will display your current Twitter status.
 
 ## Configuration
 
-You can configure Twits by navigating to Admin -> Menus and selecting *Configure* in the twits_menu drop down. Now enter either your Twitter username or your Twitter ID and click save.
+You can configure Twits by navigating to Admin -> Menus and selecting *Configure* in the twits_menu drop down. Below is a list of what can be configured.
+
+* `Twitter Username` → Twitter account you want displayed.
+* `Date Format` → The e107 date format you want the date converted to. Default is `long`.
+* `Tweets to Display` → The number of tweets you want displayed on the menu. Default is `1`.
+
+When you are finished click Save.
 
 ## Translations
 
@@ -21,5 +27,5 @@ Alternatively, you can save the `twits_template.php` file inside your theme fold
 The following tags are converted inside the template file:
 
 * `%_TWEETER_%` → Displays your Twitter username, which links to your Twitter profile.
-* `%_TWEET_%` → Displays your current status. #tags and @mentions are automatically converted.
+* `%_TWEET_%` → Displays your current status. #hashtags and @mentions are automatically converted.
 * `%_DATESTAMP_%` → The datestamp of your status update. Converted using e107's convert_date() function.
