@@ -1,21 +1,20 @@
+# Notes
+
+As of 0.3.1 Twits is now a plugin and is no longer a menu item. Because of this you will need to go to your menus page, which will remove the old menu item, and then go to the Plugin Manager to install Twits. Once you have installed Twits you can configure it and then head back to the menus page and re-add it to your menu area.
+
+Secondly, the template file has changed. See below for the new tags.
+
 # Twits
 
 Twits is a menu item that will display your current Twitter status.
 
 ## Configuration
 
-You can configure Twits by navigating to Admin -> Menus and selecting *Configure* in the twits_menu drop down. Below is a list of what can be configured.
-
-* `Twitter Username` → Twitter account you want displayed.
-* `Date Format` → The e107 date format you want the date converted to. Default is `long`.
-* `Tweets to Display` → The number of tweets you want displayed on the menu. Default is `1`.
-
-When you are finished click Save.
+Navigate to the admin area and under the Plugins section select the `Twits` icon.
 
 ## Translations
 
 If you would like to translate this plugin, post the translations on [paste2.org](http://paste2.org/) and [PM](http://e107.org/e107_plugins/pm/pm.php?send.37) me the URL generated.
-
 
 # Templates
 
@@ -26,6 +25,9 @@ Alternatively, you can save the `twits_template.php` file inside your theme fold
 
 The following tags are converted inside the template file:
 
-* `%_TWEETER_%` → Displays your Twitter username, which links to your Twitter profile.
-* `%_TWEET_%` → Displays your current status. #hashtags and @mentions are automatically converted.
+* `%_USERNAME_%` → Displays your Twitter username, which links to your Twitter profile.
+* `%_STATUS_%` → Displays your current status. #tags and @mentions are automatically converted.
 * `%_DATESTAMP_%` → The datestamp of your status update. Converted using e107's convert_date() function.
+* `%_RETWEET_%` → Displays a link to allow visitors of your site to retweet the listed status.
+* `%_REPLY_%` → Displays a link to allow visitors of your site the ability to reply to the listed status.
+* `%_FAVORITE_%` → Displays a link to allow visitors of your site to favorite the listed status.

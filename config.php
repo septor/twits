@@ -8,59 +8,85 @@ include_once(e_HANDLER."date_handler.php");
 
 $gen = new convert();
 
-if ($_POST['update_menu']) {
-	unset($menu_pref['twits_menu']);
-	$menu_pref['twits_menu'] = $_POST['pref'];
-	$tmp = addslashes(serialize($menu_pref));
-	$sql->db_Update("core", "e107_value='$tmp' WHERE e107_name='menu_pref' ");
-	$ns->tablerender("", "<div style=\'text-align:center\'><b>".TWITS_LAN001."</b></div>");
+if(isset($_POST['updatesettings']))
+{
+	$pref['twits_username'] = $_POST['username'];
+	$pref['twits_dateformat'] = $_POST['dateformat'];
+	$pref['twits_tweets'] = $_POST['tweets'];
+    $pref['twits_retweets'] = $_POST['retweets'];
+    $pref['twits_replies'] = $_POST['replies'];
+	save_prefs();
+	$message = TWITS_CONFIG_01;
 }
 
-$text = "
-	<div style='text-align:center'>
-	<form action='".e_SELF."?".e_QUERY."' method='post'>
-	<table style='width:85%' class='fborder' >
+if(isset($message)){ $ns->tablerender("", "<div style='text-align:center'><b>".$message."</b></div>"); }
 
-	<tr>
-	<td style='width:30%' class='forumheader3'>".TWITS_LAN002."</td>
-	<td style='width:70%' class='forumheader3'>
-	<input type='text' class='tbox' name='pref[username]' value='".(($menu_pref['twits_menu']['username']) ? $menu_pref['twits_menu']['username'] : "")."' />
-	</td>
-	</tr>
-	
-	<tr>
-	<td style='width:30%' class='forumheader3'>".TWITS_LAN007."</td>
-	<td style='width:70%' class='forumheader3'>
-	<select name='pref[datestyle]' class='tbox'>";
-	foreach(array('long', 'short', 'forum') as $format){
-		$text.= "<option value='".$format."'".($format == $menu_pref['twits_menu']['datestyle'] ? " selected" : "").">".$gen->convert_date(time(), $format)." (".$format.")</option>";
-	}
-	$text .= "
-	</select>
-	</td>
-	</tr>
+$text = "<div style='text-align:center'>
+<form action='".e_SELF."' method='post'>
+<table style='width:85%' class='fborder' >
 
-	<tr>
-	<td style='width:30%' class='forumheader3'>".TWITS_LAN008."</td>
-	<td style='width:70%' class='forumheader3'>
-	<select name='pref[tweets]' class='tbox'>";
-	for($i = 1; $i <= 5; $i++){
-		$text .= "<option value='".$i."'".($i == $menu_pref['twits_menu']['tweets'] ? " selected" : "").">".$i."</option>";
-	}
-	$text .= "
-	</select>
-	</td>
-	</tr>
+<tr>
+<td style='width:30%' class='forumheader3'>".TWITS_CONFIG_02."</td>
+<td style='width:70%' class='forumheader3'>
+<input type='text' class='tbox' name='username' value='".(($pref['twits_username']) ? $pref['twits_username'] : "")."' />
+</td>
+</tr>
 
-	<tr>
-	<td colspan='2' class='forumheader' style='text-align: center;'><input class='button' type='submit' name='update_menu' value='".TWITS_LAN003."' /></td>
-	</tr>
-	</table>
-	</form>
-	</div>
-	";
+<tr>
+<td style='width:30%' class='forumheader3'>".TWITS_CONFIG_03."</td>
+<td style='width:70%' class='forumheader3'>
+<select name='dateformat' class='tbox'>";
+foreach(array('long', 'short', 'forum') as $format)
+{
+	$text.= "<option value='".$format."'".($format == $pref['twits_dateformat'] ? " selected" : "").">".$gen->convert_date(time(), $format)." (".$format.")</option>";
+}
+$text .= "
+</select>
+</td>
+</tr>
 
-$ns->tablerender(TWITS_LAN004, $text);
+<tr>
+<td style='width:30%' class='forumheader3'>".TWITS_CONFIG_04."</td>
+<td style='width:70%' class='forumheader3'>
+<select name='tweets' class='tbox'>";
+for($i = 1; $i <= 5; $i++)
+{
+	$text .= "<option value='".$i."'".($i == $pref['twits_tweets'] ? " selected" : "").">".$i."</option>";
+}
+$text .= "
+</select>
+</td>
+</tr>
+
+<tr>
+<td style='width:30%' class='forumheader3'>".TWITS_CONFIG_05."</td>
+<td style='width:70%' class='forumheader3'>
+<select name='replies' class='tbox'>
+<option value='0'".($pref['twits_replies'] == "0" ? " selected" : "").">".TWITS_CONFIG_06."</option>
+<option value='1'".($pref['twits_replies'] == "1" ? " selected" : "").">".TWITS_CONFIG_07."</option>
+</select>
+</td>
+</tr>
+
+<tr>
+<td style='width:30%' class='forumheader3'>".TWITS_CONFIG_08."</td>
+<td style='width:70%' class='forumheader3'>
+<select name='retweets' class='tbox'>
+<option value='0'".($pref['twits_retweets'] == "0" ? " selected" : "").">".TWITS_CONFIG_06."</option>
+<option value='1'".($pref['twits_retweets'] == "1" ? " selected" : "").">".TWITS_CONFIG_07."</option>
+</select>
+</td>
+</tr>
+
+<tr>
+<td colspan='2' class='forumheader' style='text-align: center;'><input class='button' type='submit' name='updatesettings' value='".TWITS_CONFIG_09."' /></td>
+</tr>
+</table>
+</form>
+</div>
+";
+
+$ns->tablerender(TWITS_CONFIG_10, $text);
 
 require_once(e_ADMIN."footer.php");
 
