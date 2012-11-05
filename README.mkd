@@ -4,6 +4,14 @@ As of 0.3.1 Twits is now a plugin and is no longer a menu item. Because of this 
 
 Secondly, the template file has changed. See below for the new tags.
 
+0.3.2 changes by nlstart:
+* introduced proper e107 template handling (making use of new shortcode file);
+* improved links for XHTML validity and proper twitter usage;
+* improved code readability;
+* introduced admin defined twits-menu header that will be displayed on top of the menu;
+* new language term TWITS_CONFIG_11 for above twits-menu header in config
+* improved looks of default template
+
 # Twits
 
 Twits is a menu item that will display your current Twitter status.
@@ -25,9 +33,9 @@ Alternatively, you can save the `twits_template.php` file inside your theme fold
 
 The following tags are converted inside the template file:
 
-* `%_USERNAME_%` → Displays your Twitter username, which links to your Twitter profile.
-* `%_STATUS_%` → Displays your current status. #tags and @mentions are automatically converted.
-* `%_DATESTAMP_%` → The datestamp of your status update. Converted using e107's convert_date() function.
-* `%_RETWEET_%` → Displays a link to allow visitors of your site to retweet the listed status.
-* `%_REPLY_%` → Displays a link to allow visitors of your site the ability to reply to the listed status.
-* `%_FAVORITE_%` → Displays a link to allow visitors of your site to favorite the listed status.
+* {USERNAME} → Displays your Twitter username, which links to your Twitter profile.
+* {STATUS} → Displays your current status. #tags and @mentions are automatically converted.
+* {DATESTAMP} → The datestamp of your status update. Converted using e107's convert_date() function.
+* {RETWEET} → Displays a link to allow visitors of your site to retweet the listed status.
+* {REPLY} → Displays a link to allow visitors of your site the ability to reply to the listed status.
+* {FAVORITE} → Displays a link to allow visitors of your site to favorite the listed status.

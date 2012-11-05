@@ -1,10 +1,10 @@
 <?php
-include_lan(e_PLUGIN."twits_menu/languages/".e_LANGUAGE.".php");
+include_lan(e_PLUGIN.'twits_menu/languages/'.e_LANGUAGE.'.php');
 
 // -- [ PLUGIN INFO ]
 $eplug_name			= "Twits";
-$eplug_version		= "0.3.1";
-$eplug_author		= "Patrick Weaver";
+$eplug_version		= "0.3.2";
+$eplug_author		= "Patrick Weaver"; 
 $eplug_url			= "http://trickmod.com/";
 $eplug_email		= "patrickweaver@gmail.com";
 $eplug_description	= TWITS_PLUGIN_01;
@@ -20,6 +20,7 @@ $eplug_caption		= TWITS_PLUGIN_02;
 
 // -- [ DEFAULT PREFERENCES ]
 $eplug_prefs = array(
+    "twits_header" => '',
     "twits_username" => '',
     "twits_dateformat" => 'long',
     "twits_tweets" => '1',
@@ -28,7 +29,6 @@ $eplug_prefs = array(
 );
 	
 // -- [ MYSQL TABLES ]
-
 $eplug_table_names = "";
 $eplug_tables = "";
 
@@ -45,5 +45,4 @@ $upgrade_add_prefs    = "";
 $upgrade_remove_prefs = "";
 $upgrade_alter_tables = "";
 $eplug_upgrade_done   = $eplug_name.TWITS_PLUGIN_04;
-
 ?>
