@@ -19,7 +19,7 @@ define("TWITS_CONFIG_07", "Yes");
 define("TWITS_CONFIG_08", "Include retweets on the menu item?");
 define("TWITS_CONFIG_09", "Save Changes");
 define("TWITS_CONFIG_10", "Configure Twits Menu");
-define("TWITS_CONFIG_11", "Twits menu header");
+define("TWITS_CONFIG_11", "Twits Menu Title:");
 
 // twits_menu.php
 define("TWITS_MENU_01", "retweet");
@@ -28,4 +28,5 @@ define("TWITS_MENU_03", "favorite");
 define("TWITS_MENU_04", " on Twitter");
 define("TWITS_MENU_05", "Twitter");
 define("TWITS_MENU_06", "You must set a Twitter username in the configuration area before you can use this menu.");
+define("TWITS_MENU_07", "Twitter Status");
 ?>

@@ -18,6 +18,7 @@ $gen = new convert();
 $date_format = (($pref['twits_dateformat']) ? $pref['twits_dateformat'] : 'long');
 $tweets = (($pref['twits_tweets']) ? $pref['twits_tweets'] : '1');
 $retweets = (($pref['twits_retweets']) ? $pref['twits_retweets'] : '0');
+$menutitle = (!empty($pref['twits_header']) ? $pref['twits_header'] : TWITS_MENU_07);
 
 $text = $tweet_text = '';
 if($pref['twits_username'] !== '')
@@ -73,5 +74,5 @@ else
 cachevars('all_tweets', $all_tweets);
 cachevars('no_tweet_account', $no_tweet_account);
 $text = $tp->parseTemplate($TWITS_MENU, FALSE, $twits_shortcodes);
-$ns->tablerender($tp->toHTML($pref['twits_header']), $text, 'twits');
+$ns->tablerender($tp->toHTML($menutitle), $text, 'twits');
 ?>
