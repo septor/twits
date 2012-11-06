@@ -46,9 +46,16 @@ $text = "
 				<td style='width:70%' class='forumheader3'>
 					<select name='dateformat' class='tbox'>";
 
-foreach(array('long', 'short', 'forum') as $format)
+foreach(array('long', 'short', 'forum', 'ago') as $format)
 {
-	$text.= 		"<option value='".$format."'".($format == $pref['twits_dateformat'] ? " selected" : "").">".$gen->convert_date(time(), $format)." (".$format.")</option>";
+	if($format == "ago")
+	{
+		$text.= 		"<option value='".$format."'".($format == $pref['twits_dateformat'] ? " selected" : "").">today (".$format.")</option>";
+	}
+	else
+	{
+		$text.= 		"<option value='".$format."'".($format == $pref['twits_dateformat'] ? " selected" : "").">".$gen->convert_date(time(), $format)." (".$format.")</option>";
+	}
 }
 
 $text .= "

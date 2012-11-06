@@ -20,6 +20,7 @@ define("TWITS_CONFIG_08", "Include retweets on the menu item?");
 define("TWITS_CONFIG_09", "Save Changes");
 define("TWITS_CONFIG_10", "Configure Twits Menu");
 define("TWITS_CONFIG_11", "Twits Menu Title:");
+define("TWITS_CONFIG_12", "today");
 
 // twits_menu.php
 define("TWITS_MENU_01", "retweet");
@@ -29,4 +30,7 @@ define("TWITS_MENU_04", " on Twitter");
 define("TWITS_MENU_05", "Twitter");
 define("TWITS_MENU_06", "You must set a Twitter username in the configuration area before you can use this menu.");
 define("TWITS_MENU_07", "Twitter Status");
+define("TWITS_MENU_08", "today");
+define("TWITS_MENU_09", "yesterday");
+define("TWITS_MENU_10", "{0} days ago"); // {0} is replaced with the number of days ago
 ?>

@@ -52,10 +52,31 @@ if($pref['twits_username'] !== '')
 	{
 		if($b <= $tweets)
 		{
+			if($date_format == "ago")
+			{
+				$timedif = time() - strtotime($xml->status[$id]->created_at);
+				if($timedif <= 86400)
+				{
+					$datestamp = TWITS_MENU_08;
+				}
+				else if($timedif > 86401 && $timedif <= 172800)
+				{
+					$datestamp = TWITS_MENU_09;
+				}
+				else
+				{
+					$datestamp = str_replace("{0}", floor($timedif / 86400), TWITS_MENU_10);
+				}
+			}
+			else
+			{
+				$datestamp = $gen->convert_date(strtotime($xml->status[$id]->created_at), $date_format);
+			}
+
 			$tweet_id = $xml->status[$id]->id;
 			cachevars('username', $username);
 			cachevars('status', parseContent($xml->status[$id]->text));
-			cachevars('datestamp', $gen->convert_date(strtotime($xml->status[$id]->created_at), $date_format));
+			cachevars('datestamp', $datestamp);
 			cachevars('retweet', $tweet_id);
 			cachevars('reply', $tweet_id);
 			cachevars('favorite', $tweet_id);
