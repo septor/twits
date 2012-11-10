@@ -1,5 +1,6 @@
 <?php
 // Dutch translation by nlstart
+
 // plugin.php
 define("TWITS_PLUGIN_01", "Een Twitter status menu.");
 define("TWITS_PLUGIN_02", "Configureer Twits");
@@ -18,6 +19,12 @@ define("TWITS_CONFIG_08", "Inclusief retweets op item?");
 define("TWITS_CONFIG_09", "Bewaar wijzigingen");
 define("TWITS_CONFIG_10", "Configureer Twits menu");
 define("TWITS_CONFIG_11", "Twits menu titel");
+define("TWITS_CONFIG_12", "vandaag");
+define("TWITS_CONFIG_13", "Menu-titel: toon echte naam?");
+define("TWITS_CONFIG_14", "Menu-titel: toon schermnaam?");
+define("TWITS_CONFIG_15", "Menu-titel: toon icoon?");
+define("TWITS_CONFIG_16", "Menu-titel: toon locatie?");
+define("TWITS_CONFIG_17", "Menu-titel: toon url?");
 
 // twits_menu.php
 define("TWITS_MENU_01", "retweet");
@@ -26,4 +33,8 @@ define("TWITS_MENU_03", "favoriet");
 define("TWITS_MENU_04", " op Twitter");
 define("TWITS_MENU_05", "Twitter");
 define("TWITS_MENU_06", "Je moet een Twitter gebruikersnaam opgeven in het configuratie gedeelte voordat je dit menu kunt gebruiken.");
+define("TWITS_MENU_07", "Twitter status");
+define("TWITS_MENU_08", "vandaag");
+define("TWITS_MENU_09", "gisteren");
+define("TWITS_MENU_10", "{0} dagen geleden"); // {0} is replaced with the number of days ago
 ?>

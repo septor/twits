@@ -19,12 +19,21 @@ $date_format = (($pref['twits_dateformat']) ? $pref['twits_dateformat'] : 'long'
 $tweets = (($pref['twits_tweets']) ? $pref['twits_tweets'] : '1');
 $retweets = (($pref['twits_retweets']) ? $pref['twits_retweets'] : '0');
 $menutitle = (!empty($pref['twits_header']) ? $pref['twits_header'] : TWITS_MENU_07);
+$username = $pref['twits_username'];
+$twits_file = e_PLUGIN."twits_menu/twits.xml";
+$cachetime = $pref['twits_cachetime'] * 60;
+
 
 $text = $tweet_text = '';
-if($pref['twits_username'] !== '')
+if($username !== '')
 {
-	$username = $pref['twits_username'];
-	$xml = simplexml_load_file("http://api.twitter.com/1/statuses/user_timeline/".$username.".xml?count=25&include_rts=".$retweets."&callback=?");
+	if(!(file_exists($twits_file)) || time() - filemtime($twits_file) > $cachetime)
+	{
+		$txml = file_get_contents('http://api.twitter.com/1/statuses/user_timeline/'.$username.'.xml?count=25&include_rts='.$retweets.'&callback=?');
+		file_put_contents($twits_file, $txml);
+	}
+		
+	$xml = simplexml_load_file($twits_file);
 	$sid = array();
 
 	if($pref['twits_replies'] == '0')
@@ -46,13 +55,18 @@ if($pref['twits_username'] !== '')
 			array_push($sid, $i);
 		}
 	}
+	
+	$user_realname = $xml->status->user->name;
+	$user_icon = $xml->status->user->profile_image_url;
+	$user_location = $xml->status->user->location;
+	$user_url = $xml->status->user->url;
 
 	$b = 1;
 	foreach($sid as $id)
 	{
 		if($b <= $tweets)
 		{
-			if($date_format == "ago")
+			if($date_format == 'ago')
 			{
 				$timedif = time() - strtotime($xml->status[$id]->created_at);
 				if($timedif <= 86400)
@@ -76,7 +90,7 @@ if($pref['twits_username'] !== '')
 			$tweet_id = $xml->status[$id]->id;
 			cachevars('username', $username);
 			cachevars('status', parseContent($xml->status[$id]->text));
-			cachevars('datestamp', $datestamp);
+			cachevars('datestamp', array($username, $tweet_id, $datestamp));
 			cachevars('retweet', $tweet_id);
 			cachevars('reply', $tweet_id);
 			cachevars('favorite', $tweet_id);
@@ -89,9 +103,19 @@ if($pref['twits_username'] !== '')
 }
 else
 {
+	$username = '';
+	$user_realname = '';
+	$user_icon = '';
+	$user_location = '';
+	$user_url = '';
 	$all_tweets = '';
 	$no_tweet_account = TWITS_MENU_06;
 }
+($pref['twits_show_realname'] == "1" ? cachevars('user_realname', array($username, $user_realname)) : '');
+($pref['twits_show_screenname'] == "1" ? cachevars('user_screenname', $username) : '');
+($pref['twits_show_usericon'] == "1" ? cachevars('user_icon', array($username, $user_icon)) : '');
+($pref['twits_show_userlocation'] == "1" ? cachevars('user_location', $user_location) : '');
+($pref['twits_show_userurl'] == "1" ? cachevars('user_url', $user_url) : '');
 cachevars('all_tweets', $all_tweets);
 cachevars('no_tweet_account', $no_tweet_account);
 $text = $tp->parseTemplate($TWITS_MENU, FALSE, $twits_shortcodes);

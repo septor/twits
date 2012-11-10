@@ -24,6 +24,39 @@ SC_BEGIN USERNAME
 SC_END
 
 // ------------------------------------------------
+SC_BEGIN USER_SCREENNAME
+	$item = getcachedvars('user_screenname');
+	return $item;
+SC_END
+
+// ------------------------------------------------
+SC_BEGIN USER_REALNAME
+	$item_array = getcachedvars('user_realname');
+	$item = "<a href='https://twitter.com/".$item_array[0]."' alt=''>".$item_array[1]."</a>";
+	return $item;
+SC_END
+
+// ------------------------------------------------
+SC_BEGIN USER_ICON
+	$item_array = getcachedvars('user_icon');
+	$item = "<a href='https://twitter.com/".$item_array[0]."' alt=''><img src='".$item_array[1]."' alt='' style='float:left; margin-right: 5px; max-width:30px;' /></a>";
+	return $item;
+SC_END
+
+// ------------------------------------------------
+SC_BEGIN USER_LOCATION
+	$item = getcachedvars('user_location');
+	return $item;
+SC_END
+
+// ------------------------------------------------
+SC_BEGIN USER_URL
+	$item = getcachedvars('user_url');
+	$item = "<a href='".$item."' alt=''>".$item."</a>";
+	return $item;
+SC_END
+
+// ------------------------------------------------
 SC_BEGIN STATUS
 	$item = getcachedvars('status');
 	return $item;
@@ -31,7 +64,8 @@ SC_END
 
 // ------------------------------------------------
 SC_BEGIN DATESTAMP
-	$item = getcachedvars('datestamp');
+	$item_array = getcachedvars('datestamp');
+	$item = "<a href='https://twitter.com/".$item_array[0]."/status/".$item_array[1]."' alt='' target='_blank'>".$item_array[2]."</a>";
 	return $item;
 SC_END
 

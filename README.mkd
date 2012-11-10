@@ -2,15 +2,7 @@
 
 As of 0.3.1 Twits is now a plugin and is no longer a menu item. Because of this you will need to go to your menus page, which will remove the old menu item, and then go to the Plugin Manager to install Twits. Once you have installed Twits you can configure it and then head back to the menus page and re-add it to your menu area.
 
-Secondly, the template file has changed. See below for the new tags.
-
-0.3.2 changes by nlstart:
-* introduced proper e107 template handling (making use of new shortcode file);
-* improved links for XHTML validity and proper twitter usage;
-* improved code readability;
-* introduced admin defined twits-menu header that will be displayed on top of the menu;
-* new language term TWITS_CONFIG_11 for above twits-menu header in config
-* improved looks of default template
+Secondly, the template file has changed. See below for the new shortcodes.
 
 # Twits
 
@@ -29,9 +21,11 @@ If you would like to translate this plugin, post the translations on [paste2.org
 The information displayed in the Twits menu can be customized by editing the `twits_template.php` file inside the `e107_plugins/twits_menu/` folder.
 Alternatively, you can save the `twits_template.php` file inside your theme folder and it will be changed on a per theme basis.
 
-## Tags
+## Shortcodes
 
-The following tags are converted inside the template file:
+The following shortcodes are converted inside the template file:
+
+*This section is outdated and will get updated shortly. Refer to the `twits_shortcodes.php` file for all the shortcodes.*
 
 * {USERNAME} → Displays your Twitter username, which links to your Twitter profile.
 * {STATUS} → Displays your current status. #tags and @mentions are automatically converted.

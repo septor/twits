@@ -10,12 +10,18 @@ $gen = new convert();
 
 if(isset($_POST['updatesettings']))
 {
-	$pref['twits_header'] 		= $tp->toDB($_POST['header']);
-	$pref['twits_username'] 	= $tp->toDB($_POST['username']);
-	$pref['twits_dateformat'] 	= $tp->toDB($_POST['dateformat']);
-	$pref['twits_tweets']		= intval($_POST['tweets']);
-    $pref['twits_retweets'] 	= intval($_POST['retweets']);
-    $pref['twits_replies'] 		= intval($_POST['replies']);
+	$pref['twits_header'] 			= $tp->toDB($_POST['header']);
+	$pref['twits_username'] 		= $tp->toDB($_POST['username']);
+	$pref['twits_show_realname']	= intval($_POST['show_realname']);
+	$pref['twits_show_screenname']	= intval($_POST['show_screenname']);
+	$pref['twits_show_usericon']	= intval($_POST['show_usericon']);
+	$pref['twits_show_userlocation']= intval($_POST['show_userlocation']);
+	$pref['twits_show_userurl']		= intval($_POST['show_userurl']);
+	$pref['twits_dateformat'] 		= $tp->toDB($_POST['dateformat']);
+	$pref['twits_tweets']			= intval($_POST['tweets']);
+    $pref['twits_retweets'] 		= intval($_POST['retweets']);
+    $pref['twits_replies'] 			= intval($_POST['replies']);
+    $pref['twits_cachetime']		= intval($_POST['cachetime']);
 	save_prefs();
 	$message = TWITS_CONFIG_01;
 }
@@ -40,6 +46,56 @@ $text = "
 					<input type='text' class='tbox' name='username' value='".(($pref['twits_username']) ? $pref['twits_username'] : "")."' />
 				</td>
 			</tr>
+			
+			<tr>
+				<td style='width:30%' class='forumheader3'>".TWITS_CONFIG_13."</td>
+				<td style='width:70%' class='forumheader3'>
+					<select name='show_realname' class='tbox'>
+						<option value='0'".($pref['twits_show_realname'] == "0" ? " selected" : "").">".TWITS_CONFIG_06."</option>
+						<option value='1'".($pref['twits_show_realname'] == "1" ? " selected" : "").">".TWITS_CONFIG_07."</option>
+					</select>
+				</td>
+			</tr>
+
+			<tr>
+				<td style='width:30%' class='forumheader3'>".TWITS_CONFIG_14."</td>
+				<td style='width:70%' class='forumheader3'>
+					<select name='show_screenname' class='tbox'>
+						<option value='0'".($pref['twits_show_screenname'] == "0" ? " selected" : "").">".TWITS_CONFIG_06."</option>
+						<option value='1'".($pref['twits_show_screenname'] == "1" ? " selected" : "").">".TWITS_CONFIG_07."</option>
+					</select>
+				</td>
+			</tr>
+			
+			<tr>
+				<td style='width:30%' class='forumheader3'>".TWITS_CONFIG_15."</td>
+				<td style='width:70%' class='forumheader3'>
+					<select name='show_usericon' class='tbox'>
+						<option value='0'".($pref['twits_show_usericon'] == "0" ? " selected" : "").">".TWITS_CONFIG_06."</option>
+						<option value='1'".($pref['twits_show_usericon'] == "1" ? " selected" : "").">".TWITS_CONFIG_07."</option>
+					</select>
+				</td>
+			</tr>
+
+			<tr>
+				<td style='width:30%' class='forumheader3'>".TWITS_CONFIG_16."</td>
+				<td style='width:70%' class='forumheader3'>
+					<select name='show_userlocation' class='tbox'>
+						<option value='0'".($pref['twits_show_userlocation'] == "0" ? " selected" : "").">".TWITS_CONFIG_06."</option>
+						<option value='1'".($pref['twits_show_userlocation'] == "1" ? " selected" : "").">".TWITS_CONFIG_07."</option>
+					</select>
+				</td>
+			</tr>
+
+			<tr>
+				<td style='width:30%' class='forumheader3'>".TWITS_CONFIG_17."</td>
+				<td style='width:70%' class='forumheader3'>
+					<select name='show_userurl' class='tbox'>
+						<option value='0'".($pref['twits_show_userurl'] == "0" ? " selected" : "").">".TWITS_CONFIG_06."</option>
+						<option value='1'".($pref['twits_show_userurl'] == "1" ? " selected" : "").">".TWITS_CONFIG_07."</option>
+					</select>
+				</td>
+			</tr>
 
 			<tr>
 				<td style='width:30%' class='forumheader3'>".TWITS_CONFIG_03."</td>
@@ -50,7 +106,7 @@ foreach(array('long', 'short', 'forum', 'ago') as $format)
 {
 	if($format == "ago")
 	{
-		$text.= 		"<option value='".$format."'".($format == $pref['twits_dateformat'] ? " selected" : "").">today (".$format.")</option>";
+		$text.= 		"<option value='".$format."'".($format == $pref['twits_dateformat'] ? " selected" : "").">".TWITS_CONFIG_12." (".$format.")</option>";
 	}
 	else
 	{
@@ -71,6 +127,21 @@ $text .= "
 for($i = 1; $i <= 5; $i++)
 {
 	$text .= 		"<option value='".$i."'".($i == $pref['twits_tweets'] ? " selected" : "").">".$i."</option>";
+}
+
+$text .= "
+					</select>
+				</td>
+			</tr>
+
+			<tr>
+				<td style='width:30%' class='forumheader3'>".TWITS_CONFIG_18."</td>
+				<td style='width:70%' class='forumheader3'>
+					<select name='cachetime' class='tbox'>";
+
+for($i = 10; $i <= 60; $i++)
+{
+	$text .= 		"<option value='".$i."'".($i == $pref['twits_cachetime'] ? " selected" : "").">".$i."</option>";
 }
 
 $text .= "

@@ -1,6 +1,5 @@
 <?php
 // English language file
-// Working for versions 0.3.1+
 
 // plugin.php
 define("TWITS_PLUGIN_01", "A Twitter status display menu.");
@@ -21,6 +20,12 @@ define("TWITS_CONFIG_09", "Save Changes");
 define("TWITS_CONFIG_10", "Configure Twits Menu");
 define("TWITS_CONFIG_11", "Twits Menu Title:");
 define("TWITS_CONFIG_12", "today");
+define("TWITS_CONFIG_13", "Menu-header: display real name?");
+define("TWITS_CONFIG_14", "Menu-header: display screen name?");
+define("TWITS_CONFIG_15", "Menu-header: display icon?");
+define("TWITS_CONFIG_16", "Menu-header: display location?");
+define("TWITS_CONFIG_17", "Menu-header: display url?");
+define("TWITS_CONFIG_18", "Time (in minutes) between each feed re-gather?");
 
 // twits_menu.php
 define("TWITS_MENU_01", "retweet");
