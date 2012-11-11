@@ -38,4 +38,6 @@ define("TWITS_MENU_07", "Twitter Status");
 define("TWITS_MENU_08", "today");
 define("TWITS_MENU_09", "yesterday");
 define("TWITS_MENU_10", "{0} days ago"); // {0} is replaced with the number of days ago
+define("TWITS_MENU_11", "{0} month ago"); // {0} is replaved with the number of months ago
+define("TWITS_MENU_12", "{0} months ago"); // {0} is replaved with the number of months ago
 ?>
