@@ -77,6 +77,11 @@ if($username !== '')
 				{
 					$datestamp = TWITS_MENU_09;
 				}
+				else if($timedif > 2592000)
+				{
+					$months = floor($timedif / 2592000);
+					$datestamp = str_replace("{0}", $months, ($months >= 1 ? TWITS_MENU_11 : TWITS_MENU_12));
+				}
 				else
 				{
 					$datestamp = str_replace("{0}", floor($timedif / 86400), TWITS_MENU_10);

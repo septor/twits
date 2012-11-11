@@ -72,21 +72,21 @@ SC_END
 // ------------------------------------------------
 SC_BEGIN RETWEET
 	$item = getcachedvars('retweet');
-	$item = "<a href='https://twitter.com/intent/retweet?tweet_id=".$item."' alt='' target='_blank'>".TWITS_MENU_01."</a>";
+	$item = "<a href=\"javascript:;\" onClick=\"window.open('https://twitter.com/intent/retweet?tweet_id=".$item."','retweet','scrollbars=yes,width=600,height=375');\">".TWITS_MENU_01."</a>";
 	return $item;
 SC_END
 
 // ------------------------------------------------
 SC_BEGIN REPLY
 	$item = getcachedvars('reply');
-	$item = "<a href='https://twitter.com/intent/tweet?in_reply_to=".$item."' alt='' target='_blank'>".TWITS_MENU_02."</a>";
+	$item = "<a href=\"javascript:;\" onClick=\"window.open('https://twitter.com/intent/tweet?in_reply_to=".$item."','tweet','scrollbars=yes,width=600,height=375');\">".TWITS_MENU_02."</a>";
 	return $item;
 SC_END
 
 // ------------------------------------------------
 SC_BEGIN FAVORITE
 	$item = getcachedvars('favorite');
-	$item = "<a href='https://twitter.com/intent/favorite?tweet_id=".$item."' alt='' target='_blank'>".TWITS_MENU_03."</a>";
+	$item = "<a href=\"javascript:;\" onClick=\"window.open('https://twitter.com/intent/favorite?tweet_id=".$item."','favorite','scrollbars=yes,width=600,height=375');\">".TWITS_MENU_03."</a>";
 	return $item;
 SC_END
 
