@@ -29,6 +29,10 @@ if($username !== '')
 {
 	if(!(file_exists($twits_file)) || time() - filemtime($twits_file) > $cachetime)
 	{
+		if(!(file_exists($twits_file)))
+		{
+			file_put_contents($twits_file, '');
+		}
 		$txml = file_get_contents('http://api.twitter.com/1/statuses/user_timeline/'.$username.'.xml?count=25&include_rts='.$retweets.'&callback=?');
 		file_put_contents($twits_file, $txml);
 	}
@@ -80,7 +84,7 @@ if($username !== '')
 				else if($timedif > 2592000)
 				{
 					$months = floor($timedif / 2592000);
-					$datestamp = str_replace("{0}", $months, ($months >= 1 ? TWITS_MENU_11 : TWITS_MENU_12));
+					$datestamp = str_replace("{0}", $months, ($months == 1 ? TWITS_MENU_11 : TWITS_MENU_12));
 				}
 				else
 				{
