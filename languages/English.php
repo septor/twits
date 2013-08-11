@@ -26,6 +26,10 @@ define("TWITS_CONFIG_15", "Menu-header: display icon?");
 define("TWITS_CONFIG_16", "Menu-header: display location?");
 define("TWITS_CONFIG_17", "Menu-header: display url?");
 define("TWITS_CONFIG_18", "Time (in minutes) between each feed re-gather?");
+define("TWITS_CONFIG_19", "OAuth Access Token:");
+define("TWITS_CONFIG_20", "OAuth Access Token Secret:");
+define("TWITS_CONFIG_21", "Consumer Key:");
+define("TWITS_CONFIG_22", "Consumer Secret:");
 
 // twits_menu.php
 define("TWITS_MENU_01", "retweet");
@@ -33,7 +37,7 @@ define("TWITS_MENU_02", "reply");
 define("TWITS_MENU_03", "favorite");
 define("TWITS_MENU_04", " on Twitter");
 define("TWITS_MENU_05", "Twitter");
-define("TWITS_MENU_06", "You must set a Twitter username in the configuration area before you can use this menu.");
+define("TWITS_MENU_06", "You must set a Twitter username and OAuth credentials in the configuration area before you can use this menu.");
 define("TWITS_MENU_07", "Twitter Status");
 define("TWITS_MENU_08", "today");
 define("TWITS_MENU_09", "yesterday");

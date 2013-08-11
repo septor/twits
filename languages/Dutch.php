@@ -26,6 +26,10 @@ define("TWITS_CONFIG_15", "Menu-titel: toon icoon?");
 define("TWITS_CONFIG_16", "Menu-titel: toon locatie?");
 define("TWITS_CONFIG_17", "Menu-titel: toon url?");
 define("TWITS_CONFIG_18", "Tijd (in minuten) tussen verversen van ophalen van de tweets?");
+define("TWITS_CONFIG_19", "OAuth Access Token:");
+define("TWITS_CONFIG_20", "OAuth Access Token Secret:");
+define("TWITS_CONFIG_21", "Consumer Key:");
+define("TWITS_CONFIG_22", "Consumer Secret:");
 
 // twits_menu.php
 define("TWITS_MENU_01", "retweet");
@@ -33,7 +37,8 @@ define("TWITS_MENU_02", "reply");
 define("TWITS_MENU_03", "favoriet");
 define("TWITS_MENU_04", " op Twitter");
 define("TWITS_MENU_05", "Twitter");
-define("TWITS_MENU_06", "Je moet een Twitter gebruikersnaam opgeven in het configuratie gedeelte voordat je dit menu kunt gebruiken.");
+ // TWITS_MENU_06 was updated with Google Translate! If it's wrong please send me a fix! -septor
+define("TWITS_MENU_06", "Je moet een Twitter gebruikersnaam en OAuth geloofsbrieven in de configuratie in te stellen voordat u dit menu kunt gebruiken.");
 define("TWITS_MENU_07", "Twitter status");
 define("TWITS_MENU_08", "vandaag");
 define("TWITS_MENU_09", "gisteren");

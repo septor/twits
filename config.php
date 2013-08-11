@@ -10,18 +10,22 @@ $gen = new convert();
 
 if(isset($_POST['updatesettings']))
 {
-	$pref['twits_header'] 			= $tp->toDB($_POST['header']);
-	$pref['twits_username'] 		= $tp->toDB($_POST['username']);
-	$pref['twits_show_realname']	= intval($_POST['show_realname']);
-	$pref['twits_show_screenname']	= intval($_POST['show_screenname']);
-	$pref['twits_show_usericon']	= intval($_POST['show_usericon']);
-	$pref['twits_show_userlocation']= intval($_POST['show_userlocation']);
-	$pref['twits_show_userurl']		= intval($_POST['show_userurl']);
-	$pref['twits_dateformat'] 		= $tp->toDB($_POST['dateformat']);
-	$pref['twits_tweets']			= intval($_POST['tweets']);
-    $pref['twits_retweets'] 		= intval($_POST['retweets']);
-    $pref['twits_replies'] 			= intval($_POST['replies']);
-    $pref['twits_cachetime']		= intval($_POST['cachetime']);
+	$pref['twits_header'] 					= $tp->toDB($_POST['header']);
+	$pref['twits_username'] 				= $tp->toDB($_POST['username']);
+	$pref['twits_show_realname']			= intval($_POST['show_realname']);
+	$pref['twits_show_screenname']			= intval($_POST['show_screenname']);
+	$pref['twits_show_usericon']			= intval($_POST['show_usericon']);
+	$pref['twits_show_userlocation']		= intval($_POST['show_userlocation']);
+	$pref['twits_show_userurl']				= intval($_POST['show_userurl']);
+	$pref['twits_dateformat'] 				= $tp->toDB($_POST['dateformat']);
+	$pref['twits_tweets']					= intval($_POST['tweets']);
+    $pref['twits_retweets'] 				= intval($_POST['retweets']);
+    $pref['twits_replies'] 					= intval($_POST['replies']);
+    $pref['twits_cachetime']				= intval($_POST['cachetime']);
+    $pref['twits_oauth_access_token']		= $tp->toDB($_POST['oauth_access_token']);
+    $pref['twits_oauth_access_token_secret']= $tp->toDB($_POST['oauth_access_token_secret']);
+    $pref['twits_consumer_key'] 			= $tp->toDB($_POST['consumer_key']);
+    $pref['twits_consumer_secret'] 			= $tp->toDB($_POST['consumer_secret']);
 	save_prefs();
 	$message = TWITS_CONFIG_01;
 }
@@ -44,6 +48,34 @@ $text = "
 				<td style='width:30%' class='forumheader3'>".TWITS_CONFIG_02."</td>
 				<td style='width:70%' class='forumheader3'>
 					<input type='text' class='tbox' name='username' value='".(($pref['twits_username']) ? $pref['twits_username'] : "")."' />
+				</td>
+			</tr>
+
+			<tr>
+				<td style='width:30%' class='forumheader3'>".TWITS_CONFIG_19."</td>
+				<td style='width:70%' class='forumheader3'>
+					<input type='text' class='tbox' name='oauth_access_token' value='".(($pref['twits_oauth_access_token']) ? $pref['twits_oauth_access_token'] : "")."' />
+				</td>
+			</tr>
+
+			<tr>
+				<td style='width:30%' class='forumheader3'>".TWITS_CONFIG_20."</td>
+				<td style='width:70%' class='forumheader3'>
+					<input type='text' class='tbox' name='oauth_access_token_secret' value='".(($pref['twits_oauth_access_token_secret']) ? $pref['twits_oauth_access_token_secret'] : "")."' />
+				</td>
+			</tr>
+
+			<tr>
+				<td style='width:30%' class='forumheader3'>".TWITS_CONFIG_21."</td>
+				<td style='width:70%' class='forumheader3'>
+					<input type='text' class='tbox' name='consumer_key' value='".(($pref['twits_consumer_key']) ? $pref['twits_consumer_key'] : "")."' />
+				</td>
+			</tr>
+
+			<tr>
+				<td style='width:30%' class='forumheader3'>".TWITS_CONFIG_22."</td>
+				<td style='width:70%' class='forumheader3'>
+					<input type='text' class='tbox' name='consumer_secret' value='".(($pref['twits_consumer_secret']) ? $pref['twits_consumer_secret'] : "")."' />
 				</td>
 			</tr>
 			

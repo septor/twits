@@ -1,20 +1,23 @@
 # Notes
 
-As of 0.3.1 Twits is now a plugin and is no longer a menu item. Because of this you will need to go to your menus page, which will remove the old menu item, and then go to the Plugin Manager to install Twits. Once you have installed Twits you can configure it and then head back to the menus page and re-add it to your menu area.
+Twitter recently deprecated the 1.0 branch of their API. Now Twits must use 1.1, which requires you to use OAuth. For information on how to obtain the credentials needed refer to the OAuth section a little further down. If you are unwilling to do these steps you cannot use this plugin. I apologize for the inconvenience, but this is how the cookie must crumble.
 
-Secondly, the template file has changed. See below for the new shortcodes.
+If you are getting a blank menu item (there will be some text, but not what you were looking for) you will more than likely have to CHMOD the `twits_menu` directory to be writable, `0777`. You can do this in your FTP client.
 
 # Twits
 
-Twits is a menu item that will display your current Twitter status.
+Twits is a menu item that will display your current Twitter status(es).
 
 ## Configuration
 
 Navigate to the admin area and under the Plugins section select the `Twits` icon.
 
-## Translations
+## OAuth and You!
 
-If you would like to translate this plugin, post the translations on [paste2.org](http://paste2.org/) and [PM](http://e107.org/e107_plugins/pm/pm.php?send.37) me the URL generated.
+To obtain OAuth credentials you must create an application through Twitter. Follow the below steps to get your credentials:
+
+1. Navigate to the [Developer area of Twitter](https://dev.twitter.com/) and log in.
+2. On the right hand side, click the 
 
 # Templates
 
@@ -33,3 +36,7 @@ The following shortcodes are converted inside the template file:
 * {RETWEET} → Displays a link to allow visitors of your site to retweet the listed status.
 * {REPLY} → Displays a link to allow visitors of your site the ability to reply to the listed status.
 * {FAVORITE} → Displays a link to allow visitors of your site to favorite the listed status.
+
+## Translations
+
+If you would like to translate this plugin, post the translations on [paste2.org](http://paste2.org/) and [PM](http://e107.org/e107_plugins/pm/pm.php?send.37) me the URL generated.

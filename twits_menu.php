@@ -12,6 +12,7 @@ else
 {
 	include_once(e_PLUGIN.'twits_menu/twits_template.php');
 }
+require_once(e_PLUGIN.'twits_menu/TwitterAPIExchange.php');
 
 global $tp, $sc_style;
 $gen = new convert();
@@ -20,30 +21,37 @@ $tweets = (($pref['twits_tweets']) ? $pref['twits_tweets'] : '1');
 $retweets = (($pref['twits_retweets']) ? $pref['twits_retweets'] : '0');
 $menutitle = (!empty($pref['twits_header']) ? $pref['twits_header'] : TWITS_MENU_07);
 $username = $pref['twits_username'];
-$twits_file = e_PLUGIN."twits_menu/twits.xml";
+$twits_file = e_PLUGIN."twits_menu/twits.json";
 $cachetime = $pref['twits_cachetime'] * 60;
 
-
 $text = $tweet_text = '';
-if($username !== '')
+if($username !== '' && !empty($pref['twits_oauth_access_token']) && !empty($pref['twits_oauth_access_token_secret']) && !empty($pref['twits_consumer_key']) && !empty($pref['twits_consumer_secret']))
 {
+	$settings = array(
+	    'oauth_access_token' => $pref['twits_oauth_access_token'],
+	    'oauth_access_token_secret' => $pref['twits_oauth_access_token_secret'],
+	    'consumer_key' => $pref['twits_consumer_key'],
+	    'consumer_secret' => $pref['twits_consumer_secret']
+	);
+
 	if(!(file_exists($twits_file)) || time() - filemtime($twits_file) > $cachetime)
 	{
-		if(!(file_exists($twits_file)))
-		{
-			file_put_contents($twits_file, '');
-		}
-		$txml = file_get_contents('http://api.twitter.com/1/statuses/user_timeline/'.$username.'.xml?count=25&include_rts='.$retweets.'&callback=?');
-		file_put_contents($twits_file, $txml);
+		$twitter = new TwitterAPIExchange($settings);
+		$response = $twitter->setGetfield('?screen_name='.$username.'&include_rts='.$retweets)
+		                    ->buildOauth('https://api.twitter.com/1.1/statuses/user_timeline.json', 'GET')
+		                    ->performRequest();
+		file_put_contents($twits_file, $response);
 	}
-		
-	$xml = simplexml_load_file($twits_file);
+
+	$json = json_decode(file_get_contents($twits_file));
+
+
 	$sid = array();
 
 	if($pref['twits_replies'] == '0')
 	{
 		$a = 0;
-		foreach($xml as $status)
+		foreach($json as $status)
 		{
 			$a++;
 			if(empty($status->in_reply_to_user_id))
@@ -60,10 +68,10 @@ if($username !== '')
 		}
 	}
 	
-	$user_realname = $xml->status->user->name;
-	$user_icon = $xml->status->user->profile_image_url;
-	$user_location = $xml->status->user->location;
-	$user_url = $xml->status->user->url;
+	$user_realname = $json[0]->user->name;
+	$user_icon = $json[0]->user->profile_image_url;
+	$user_location = $json[0]->user->location;
+	$user_url = $json[0]->user->url;
 
 	$b = 1;
 	foreach($sid as $id)
@@ -72,7 +80,7 @@ if($username !== '')
 		{
 			if($date_format == 'ago')
 			{
-				$timedif = time() - strtotime($xml->status[$id]->created_at);
+				$timedif = time() - strtotime($json[$id]->created_at);
 				if($timedif <= 86400)
 				{
 					$datestamp = TWITS_MENU_08;
@@ -93,18 +101,18 @@ if($username !== '')
 			}
 			else
 			{
-				$datestamp = $gen->convert_date(strtotime($xml->status[$id]->created_at), $date_format);
+				$datestamp = $gen->convert_date(strtotime($json[$id]->created_at), $date_format);
 			}
 
-			$tweet_id = $xml->status[$id]->id;
+			$tweet_id = $json[$id]->id;
 			cachevars('username', $username);
-			cachevars('status', parseContent($xml->status[$id]->text));
+			cachevars('status', parseContent($json[$id]->text));
 			cachevars('datestamp', array($username, $tweet_id, $datestamp));
 			cachevars('retweet', $tweet_id);
 			cachevars('reply', $tweet_id);
 			cachevars('favorite', $tweet_id);
 			
-			$all_tweets .= $tp->parseTemplate($EACH_TWEET, FALSE, $twits_shortcodes);				
+			$all_tweets .= $tp->parseTemplate($EACH_TWEET, FALSE, $twits_shortcodes);
 		}
 		$b++;
 	}
