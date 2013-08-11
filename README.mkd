@@ -16,8 +16,13 @@ Navigate to the admin area and under the Plugins section select the `Twits` icon
 
 To obtain OAuth credentials you must create an application through Twitter. Follow the below steps to get your credentials:
 
-1. Navigate to the [Developer area of Twitter](https://dev.twitter.com/) and log in.
-2. On the right hand side, click the 
+1. Navigate to the [Developer area of Twitter](https://dev.twitter.com/apps/) and log in.
+2. Create a new application and fill in the required fields.
+3. Once your application is created generate an access token.
+4. Click the settings tab and change your Application Type to `Read & Write`.
+5. Now copy over all your credentials into the config area of Twits. **DO NOT SHARE THESE WITH ANYONE!!**
+
+If you have any questions feel free to send me a [PM](http://e107.org/e107_plugins/pm/pm.php?send.37).
 
 # Templates
 
