@@ -37,8 +37,7 @@ define("TWITS_MENU_02", "reply");
 define("TWITS_MENU_03", "favoriet");
 define("TWITS_MENU_04", " op Twitter");
 define("TWITS_MENU_05", "Twitter");
- // TWITS_MENU_06 was updated with Google Translate! If it's wrong please send me a fix! -septor
-define("TWITS_MENU_06", "Je moet een Twitter gebruikersnaam en OAuth geloofsbrieven in de configuratie in te stellen voordat u dit menu kunt gebruiken.");
+define("TWITS_MENU_06", "Je moet een Twitter gebruikersnaam en OAuth gegevens in de configuratie instellen voordat u dit menu kunt gebruiken.");
 define("TWITS_MENU_07", "Twitter status");
 define("TWITS_MENU_08", "vandaag");
 define("TWITS_MENU_09", "gisteren");
