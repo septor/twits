@@ -63,89 +63,89 @@ class twits_ui extends e_admin_ui
 	protected $preftabs = array('General', 'OAuth');
 	protected $prefs = array(
 		'header' => array(
-			'title' => 'Header',
+			'title' => LAN_TWITS_CONFIG_01_A,
 			'tab' => 0,
 			'type' =>'text',
 			'data' => 'str',
-			'help' =>'Help Text goes here'
+			'help' =>LAN_TWITS_CONFIG_01_B
 		),
 		'username' => array(
-			'title' => 'Username',
+			'title' => LAN_TWITS_CONFIG_02,
 			'tab' => 0,
 			'type' =>'text',
 			'data' => 'str',
-			'help'=>'Help Text goes here'
+			'help' => ''
 		),
 		'dateformat' => array(
-			'title' => 'Dateformat',
+			'title' => LAN_TWITS_CONFIG_03_A,
 			'tab' => 0,
 			'type' => 'dropdown',
 			'data' => 'str',
-			'help' => 'Help Text goes here'
+			'help' => LAN_TWITS_CONFIG_03_B
 		),
 		'tweets' => array(
-			'title' => 'Tweets',
+			'title' => LAN_TWITS_CONFIG_04,
 			'tab' => 0,
-			'type' => 'boolean',
+			'type' => 'number',
 			'data' => 'str',
-			'help' => 'Help Text goes here'
+			'help' => ''
 		),
 		'replies' => array(
-			'title' => 'Replies',
+			'title' => LAN_TWITS_CONFIG_05,
 			'tab' => 0,
 			'type' => 'boolean',
 			'data' => 'str',
-			'help' => 'Help Text goes here'
+			'help' => ''
 		),
 		'retweets' => array(
-			'title' => 'Retweets',
+			'title' => LAN_TWITS_CONFIG_06,
 			'tab' => 0,
 			'type' => 'boolean',
 			'data' => 'str',
-			'help'=>'Help Text goes here'
+			'help'=>''
 		),
 		'cachetime'	=> array(
-			'title' => 'Cachetime',
+			'title' => LAN_TWITS_CONFIG_07_A,
 			'tab' => 0,
 			'type' =>'number',
 			'data' => 'str',
-			'help' => 'Help Text goes here'
+			'help' => LAN_TWITS_CONFIG_07_B
 		),
 		'access_token'	=> array(
-			'title' => 'Access_token',
+			'title' => LAN_TWITS_CONFIG_08,
 			'tab' => 1,
 			'type' => 'text',
 			'data' => 'str',
-			'help' => 'Help Text goes here'
+			'help' => ''
 		),
 		'access_secret'	=> array(
-			'title' => 'Access_secret',
+			'title' => LAN_TWITS_CONFIG_09,
 			'tab' => 1,
 			'type' => 'text',
 			'data' => 'str',
-			'help' => 'Help Text goes here'
+			'help' => ''
 		),
 		'consumer_key' => array(
-			'title' => 'Consumer Key',
+			'title' => LAN_TWITS_CONFIG_10,
 			'tab' => 1,
 			'type' =>'text',
 			'data' => 'str',
-			'help' => 'Help Text goes here'
+			'help' => ''
 		),
 		'consumer_secret' => array(
-			'title' => 'Consumer Secret',
+			'title' => LAN_TWITS_CONFIG_11,
 			'tab' => 1,
 			'type' => 'text',
 			'data' => 'str',
-			'help' => 'Help Text goes here'
+			'help' => ''
 		),
 	);
 
 
 	public function init()
 	{
-		// Set drop-down values (if any).
-
+		$this->dateformat = array('short' => LAN_TWITS_CONFIG_12, 'long' => LAN_TWITS_CONFIG_13, 'relative' => LAN_TWITS_CONFIG_14);
+		$this->prefs['dateformat']['writeParms'] = $this->dateformat;
 	}
 
 	// ------- Customize Create --------
@@ -190,11 +190,11 @@ class twits_ui extends e_admin_ui
 		*/
 }
 
-class twits_menu_form_ui extends e_admin_form_ui
+class twits_form_ui extends e_admin_form_ui
 {
 }
 
-new twits_menu_adminArea();
+new twits_adminArea();
 
 require_once(e_ADMIN."auth.php");
 e107::getAdminUI()->runPage();

@@ -1,21 +1,35 @@
 <?php
 $TWITS_TEMPLATE['menu'] = '
-<div class="forumheader2">
-	<span class="smalltext">
-	{USER_ICON}{USER_REALNAME}<br />
-	{USER_LOCATION}<br />
-	{USER_URL}<br />
-	{USER_SCREENNAME}<br />
-	{ALL_TWEETS}<br />
-	{NO_TWEET_ACCOUNT}
-	</span>
-</div>';
+{USER_ICON: linkclass=pull-left&imgclass=img-circle}
+<div class="media-body">
+    <p class="center">
+		{USER_REALNAME}<br />
+		{USER_LOCATION}<br />
+		{USER_DESCRIPTION}<br />
+		{USER_URL}
+    </p>
+</div>
+<div class="clearfix"></div>
+<hr />
+<ul class="media-list">
+	{ALL_TWEETS}
+</ul>
+{NO_TWEET_ACCOUNT}';
 
 $TWITS_TEMPLATE['tweet'] = '
-<div style="border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: #000; overflow-x: hidden; overflow-y: hidden;">
-	<span class="smalltext">
-	{USERNAME}: {STATUS}<br />
-	{DATESTAMP} &bull; {REPLY} &bull; {RETWEET} &bull; {FAVORITE}
-	</span>
-</div>'';
+	<li class="media">                                    
+		<div class="media-body">
+            <span class="text-muted pull-right">
+				<small class="text-muted">{DATESTAMP}</small>
+            </span>
+			<strong class="text-success">@ {USERNAME}</strong>
+            <p>
+				{STATUS}
+			</p>
+			<p class="center">
+				{REPLY} &bull; {RETWEET} &bull; {FAVORITE}
+			</p>
+        </div>
+	</li>
+';
 ?>

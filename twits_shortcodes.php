@@ -1,94 +1,89 @@
-<?php 
-if (!defined('e107_INIT')) { exit; }
-include_once(e_HANDLER.'shortcode_handler.php');
-global $tp;
-$twits_shortcodes = $tp->e_sc->parse_scbatch(__FILE__);
+<?php
 /*
-// ------------------------------------------------
-SC_BEGIN NO_TWEET_ACCOUNT
-	$item = getcachedvars('no_tweet_account');
-	return $item;
-SC_END
+ * Twits - A Twitter status display menu for e107
+ *
+ * Copyright (C) 2010-2015 Patrick Weaver (http://trickmod.com/)
+ * For additional information refer to the README.mkd file.
+ *
+ */
+if (!defined('e107_INIT')) { exit; }
 
-// ------------------------------------------------
-SC_BEGIN ALL_TWEETS
-	$item = getcachedvars('all_tweets');
-	return $item;
-SC_END
+class twits_shortcodes extends e_shortcode
+{
+	function sc_no_tweet_account($parm='')
+	{
+		return $this->var['no_tweet_account'];
+	}
 
-// ------------------------------------------------
-SC_BEGIN USERNAME
-	$item = getcachedvars('username');
-	$item = "<a href='https://twitter.com/".$item."' alt=''>".$item."</a>";
-	return $item;
-SC_END
+	function sc_all_tweets($parm='')
+	{
+		return $this->var['all_tweets'];
+	}
 
-// ------------------------------------------------
-SC_BEGIN USER_SCREENNAME
-	$item = getcachedvars('user_screenname');
-	return $item;
-SC_END
+	function sc_username($parm='')
+	{
+		return '<a href="https://twitter.com/'.$this->var['username'].'">'.$this->var['username'].'</a>';
+	}
 
-// ------------------------------------------------
-SC_BEGIN USER_REALNAME
-	$item_array = getcachedvars('user_realname');
-	$item = "<a href='https://twitter.com/".$item_array[0]."' alt=''>".$item_array[1]."</a>";
-	return $item;
-SC_END
+	function sc_user_screenname($parm='')
+	{
+		return $this->var['user_screenname'];
+	}
 
-// ------------------------------------------------
-SC_BEGIN USER_ICON
-	$item_array = getcachedvars('user_icon');
-	$item = "<a href='https://twitter.com/".$item_array[0]."' alt=''><img src='".$item_array[1]."' alt='' style='float:left; margin-right: 5px; max-width:30px;' /></a>";
-	return $item;
-SC_END
+	function sc_user_realname($parm='')
+	{
+		$item_array = $this->var['user_realname'];
+		return '<a href="https://twitter.com/'.$item_array[0].'">'.$item_array[1].'</a>';
+	}
 
-// ------------------------------------------------
-SC_BEGIN USER_LOCATION
-	$item = getcachedvars('user_location');
-	return $item;
-SC_END
+	function sc_user_icon($parm='')
+	{
+		$item_array = $this->var['user_icon'];
+		$linkclass = (isset($parm['linkclass']) ? $parm['linkclass'] : 'pull-left');
+		$imgclass = (isset($parm['imgclass']) ? $parm['imgclass'] : 'img-circle');
+		return '<a href="https://twitter.com/'.$item_array[0].'" class="'.$linkclass.'"><img src="'.$item_array[1].'" alt="" class="'.$imgclass.'"></a>';
+		//return '<a href="https://twitter.com/'.$item_array[0].'"><img src="'.$item_array[1].'" style="float:left; margin-right:5px; max-width:30px;" /></a>';
+	}
 
-// ------------------------------------------------
-SC_BEGIN USER_URL
-	$item = getcachedvars('user_url');
-	$item = "<a href='".$item."' alt=''>".$item."</a>";
-	return $item;
-SC_END
+	function sc_user_location($parm='')
+	{
+		return $this->var['user_location'];
+	}
 
-// ------------------------------------------------
-SC_BEGIN STATUS
-	$item = getcachedvars('status');
-	return $item;
-SC_END
+	function sc_user_url($parm='')
+	{
+		return '<a href="'.$this->var['user_url'].'">'.$this->var['user_url'].'</a>';
+	}
 
-// ------------------------------------------------
-SC_BEGIN DATESTAMP
-	$item_array = getcachedvars('datestamp');
-	$item = "<a href='https://twitter.com/".$item_array[0]."/status/".$item_array[1]."' alt='' target='_blank'>".$item_array[2]."</a>";
-	return $item;
-SC_END
+	function sc_user_description($parm='')
+	{
+		return $this->var['user_description'];
+	}
 
-// ------------------------------------------------
-SC_BEGIN RETWEET
-	$item = getcachedvars('retweet');
-	$item = "<a href=\"javascript:;\" onClick=\"window.open('https://twitter.com/intent/retweet?tweet_id=".$item."','retweet','scrollbars=yes,width=600,height=375');\">".TWITS_MENU_01."</a>";
-	return $item;
-SC_END
+	function sc_status($parm='')
+	{
+		return $this->var['status'];
+	}
 
-// ------------------------------------------------
-SC_BEGIN REPLY
-	$item = getcachedvars('reply');
-	$item = "<a href=\"javascript:;\" onClick=\"window.open('https://twitter.com/intent/tweet?in_reply_to=".$item."','tweet','scrollbars=yes,width=600,height=375');\">".TWITS_MENU_02."</a>";
-	return $item;
-SC_END
+	function sc_datestamp($parm='')
+	{
+		$item_array = $this->var['datestamp'];
+		return '<a href="https://twitter.com/'.$item_array[0].'/status/'.$item_array[1].'" target="_blank">'.$item_array[2].'</a>';
+	}
 
-// ------------------------------------------------
-SC_BEGIN FAVORITE
-	$item = getcachedvars('favorite');
-	$item = "<a href=\"javascript:;\" onClick=\"window.open('https://twitter.com/intent/favorite?tweet_id=".$item."','favorite','scrollbars=yes,width=600,height=375');\">".TWITS_MENU_03."</a>";
-	return $item;
-SC_END
+	function sc_retweet($parm='')
+	{
+		return '<a href="javascript:;" onClick="window.open(\'https://twitter.com/intent/retweet?tweet_id='.$this->var['retweet'].'\',\'retweet\',\'scrollbars=yes,width=600,height=375\');">'.LAN_TWITS_MENU_03.'</a>';
+	}
 
-*/
+	function sc_reply($parm='')
+	{
+		return '<a href="javascript:;" onClick="window.open(\'https://twitter.com/intent/tweet?in_reply_to='.$this->var['reply'].'\',\'tweet\',\'scrollbars=yes,width=600,height=375\');">'.LAN_TWITS_MENU_04.'</a>';
+	}
+
+	function sc_favorite($parm='')
+	{
+		return '<a href="javascript:;" onClick="window.open(\'https://twitter.com/intent/favorite?tweet_id='.$this->var['favorite'].'\',\'favorite\',\'scrollbars=yes,width=600,height=375\');">'.LAN_TWITS_MENU_05.'</a>';
+	}
+}
 ?>

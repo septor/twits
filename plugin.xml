@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<e107Plugin name="Twits" lan="" version="1.0" date="2015-11-15" compatibility="2.0" installRequired="true" >
+<e107Plugin name="Twits" lan="LAN_TWITS_NAME" version="1.0" date="2015-11-15" compatibility="2.0" installRequired="true" >
 	<author name="Patrick Weaver" url="http://trickmod.com" />
-	<summary lan="">Twitter Status Menu</summary>
-	<description lan="">Display your Twitter statuses in a menu item!</description>
+	<summary lan="LAN_TWITS_SUMM">Twitter Status Menu</summary>
+	<description lan="LAN_TWITS_DISC">Display your Twitter statuses in a menu item!</description>
 	<keywords>
 		<word>twitter</word>
 		<word>status</word>
@@ -10,13 +10,13 @@
 	<category>content</category>
 	<copyright>2015</copyright>
 	<adminLinks>
-		<link url="admin_config.php" description="" icon="images/twit-menu_logo_32.png" iconSmall="images/twits-menu_logo_16.png" primary="true" >LAN_CONFIGURE</link>
+		<link url="admin_config.php" description="" icon="images/logo.png" iconSmall="images/logo_small.png" primary="true" >LAN_CONFIGURE</link>
 	</adminLinks>
 	<pluginPrefs>
 		<pref name='header'></pref>
 		<pref name='username'></pref>
 		<pref name='dateformat'>relative</pref>
-		<pref name='tweets'>true</pref>
+		<pref name='tweets'>1</pref>
 		<pref name='replies'>true</pref>
 		<pref name='retweets'>false</pref>
 		<pref name='cachetime'>60</pref>
