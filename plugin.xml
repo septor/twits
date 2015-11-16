@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e107Plugin name="Twits" lan="" version="1.0" date="2015-11-15" compatibility="2.0" installRequired="true" >
+	<author name="Patrick Weaver" url="http://trickmod.com" />
+	<summary lan="">Twitter Status Menu</summary>
+	<description lan="">Display your Twitter statuses in a menu item!</description>
+	<keywords>
+		<word>twitter</word>
+		<word>status</word>
+	</keywords>
+	<category>content</category>
+	<copyright>2015</copyright>
+	<adminLinks>
+		<link url="admin_config.php" description="" icon="images/twit-menu_logo_32.png" iconSmall="images/twits-menu_logo_16.png" primary="true" >LAN_CONFIGURE</link>
+	</adminLinks>
+	<pluginPrefs>
+		<pref name='header'></pref>
+		<pref name='username'></pref>
+		<pref name='dateformat'>relative</pref>
+		<pref name='tweets'>true</pref>
+		<pref name='replies'>true</pref>
+		<pref name='retweets'>false</pref>
+		<pref name='cachetime'>60</pref>
+		<pref name='access_token'></pref>
+		<pref name='access_secret'></pref>
+		<pref name='consumer_key'></pref>
+		<pref name='consumer_secret'></pref>
+	</pluginPrefs>
+</e107Plugin>
