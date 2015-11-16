@@ -60,6 +60,30 @@ class twits_shortcodes extends e_shortcode
 		return $this->var['user_description'];
 	}
 
+	function sc_user_following($parm='')
+	{
+		$item_array = $this->var['user_following'];
+		return '<a href="https://twitter.com/'.$item_array[0].'/following">'.$item_array[1].'</a>';
+	}
+
+	function sc_user_followers($parm='')
+	{
+		$item_array = $this->var['user_followers'];
+		return '<a href="https://twitter.com/'.$item_array[0].'/followers">'.$item_array[1].'</a>';
+	}
+
+	function sc_user_tweets($parm='')
+	{
+		$item_array = $this->var['user_tweets'];
+		return '<a href="https://twitter.com/'.$item_array[0].'">'.$item_array[1].'</a>';
+	}
+
+	function sc_user_lists($parm='')
+	{
+		$item_array = $this->var['user_lists'];
+		return '<a href="https://twitter.com/'.$item_array[0].'/lists">'.$item_array[1].'</a>';
+	}
+
 	function sc_status($parm='')
 	{
 		return $this->var['status'];

@@ -18,29 +18,28 @@ $template = e107::getTemplate('twits');
 
 $date_format = (($pref['dateformat']) ? $pref['dateformat'] : 'relative');
 $tweets = (($pref['tweets']) ? $pref['tweets'] : '1');
-$retweets = (($pref['retweets']) ? $pref['retweets'] : false);
-$retweets = ($retweets = true ? '1' : '0');
+$retweets = ($pref['retweets'] == true ? '1' : '0');
 $menutitle = (!empty($pref['header']) ? $pref['header'] : LAN_TWITS_MENU_01);
 $username = $pref['username'];
 $twits_file = e_PLUGIN."twits/twits.json";
 $cachetime = $pref['cachetime'] * 60;
 
-$text = $tweet_text = '';
+$text = '';
 if($username !== '' && !empty($pref['access_token']) && !empty($pref['access_secret']) && !empty($pref['consumer_key']) && !empty($pref['consumer_secret']))
 {
 	$settings = array(
-	    'oauth_access_token' => $pref['access_token'],
-	    'oauth_access_token_secret' => $pref['access_secret'],
-	    'consumer_key' => $pref['consumer_key'],
-	    'consumer_secret' => $pref['consumer_secret']
+		'oauth_access_token' => $pref['access_token'],
+		'oauth_access_token_secret' => $pref['access_secret'],
+		'consumer_key' => $pref['consumer_key'],
+		'consumer_secret' => $pref['consumer_secret']
 	);
 
-	if(!(file_exists($file)) || time() - filemtime($twits_file) > $cachetime)
+	if(!(file_exists($twits_file)) || time() - filemtime($twits_file) > $cachetime)
 	{
 		$twitter = new TwitterAPIExchange($settings);
 		$response = $twitter->setGetfield('?screen_name='.$username.'&include_rts='.$retweets)
-		                    ->buildOauth('https://api.twitter.com/1.1/statuses/user_timeline.json', 'GET')
-		                    ->performRequest();
+			->buildOauth('https://api.twitter.com/1.1/statuses/user_timeline.json', 'GET')
+			->performRequest();
 		file_put_contents($twits_file, $response);
 	}
 
@@ -67,12 +66,16 @@ if($username !== '' && !empty($pref['access_token']) && !empty($pref['access_sec
 			array_push($sid, $i);
 		}
 	}
-	
+
 	$user_realname = $json[0]->user->name;
 	$user_icon = $json[0]->user->profile_image_url;
 	$user_location = $json[0]->user->location;
 	$user_url = $json[0]->user->url;
 	$user_description = $json[0]->user->description;
+	$user_following = $json[0]->user->friends_count;
+	$user_followers = $json[0]->user->followers_count;
+	$user_lists = $json[0]->user->listed_count;
+	$user_tweets = $json[0]->user->statuses_count;
 
 	$b = 1;
 	foreach($sid as $id)
@@ -116,6 +119,10 @@ $sc->setVars(array(
 	'user_realname' => array($username, $user_realname),
 	'user_url' => $user_url,
 	'user_description' => $user_description,
+	'user_following' => array($username, $user_following),
+	'user_followers' => array($username, $user_followers),
+	'user_lists' => array($username, $user_lists),
+	'user_tweets' => array($username, $user_tweets),
 	'all_tweets' => $all_tweets,
 	'no_tweet_account' => $no_tweet_account
 ));
