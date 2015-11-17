@@ -119,10 +119,10 @@ $sc->setVars(array(
 	'user_realname' => array($username, $user_realname),
 	'user_url' => $user_url,
 	'user_description' => $user_description,
-	'user_following' => array($username, $user_following),
-	'user_followers' => array($username, $user_followers),
-	'user_lists' => array($username, $user_lists),
-	'user_tweets' => array($username, $user_tweets),
+	'user_following' => $user_following,
+	'user_followers' => $user_followers,
+	'user_lists' => $user_lists,
+	'user_tweets' => $user_tweets,
 	'all_tweets' => $all_tweets,
 	'no_tweet_account' => $no_tweet_account
 ));

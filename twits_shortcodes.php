@@ -62,26 +62,22 @@ class twits_shortcodes extends e_shortcode
 
 	function sc_user_following($parm='')
 	{
-		$item_array = $this->var['user_following'];
-		return '<a href="https://twitter.com/'.$item_array[0].'/following">Following <span class="badge">'.$item_array[1].'</span></a>';
+		return $this->var['user_following'];
 	}
 
 	function sc_user_followers($parm='')
 	{
-		$item_array = $this->var['user_followers'];
-		return '<a href="https://twitter.com/'.$item_array[0].'/followers">Followers <span class="badge">'.$item_array[1].'</span></a>';
+		return $this->var['user_followers'];
 	}
 
 	function sc_user_tweets($parm='')
 	{
-		$item_array = $this->var['user_tweets'];
-		return '<a href="https://twitter.com/'.$item_array[0].'">Tweets <span class="badge">'.$item_array[1].'</span></a>';
+		return $this->var['user_tweets'];
 	}
 
 	function sc_user_lists($parm='')
 	{
-		$item_array = $this->var['user_lists'];
-		return '<a href="https://twitter.com/'.$item_array[0].'/lists">Lists <span class="badge">'.$item_array[1].'</span></a>';
+		return $this->var['user_lists'];
 	}
 
 	function sc_status($parm='')
