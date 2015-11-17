@@ -28,7 +28,7 @@ $TWITS_TEMPLATE['menu'] = '
 </ul>';
 
 $TWITS_TEMPLATE['tweet'] = '
-	<li class="media">                                    
+	<li class="media">
 		<div class="media-body">
             <span class="text-muted pull-right">
 				<small class="text-muted">{DATESTAMP}</small>

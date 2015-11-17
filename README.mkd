@@ -1,16 +1,10 @@
-# Notes
-
-Twitter recently deprecated the 1.0 branch of their API. Now Twits must use 1.1, which requires you to use OAuth. For information on how to obtain the credentials needed refer to the OAuth section a little further down. If you are unwilling to do these steps you cannot use this plugin. I apologize for the inconvenience, but this is how the cookie must crumble.
-
-If you are getting a blank menu item (there will be some text, but not what you were looking for) you will more than likely have to CHMOD the `twits_menu` directory to be writable, `0777`. You can do this in your FTP client.
-
 # Twits
 
 Twits is a menu item that will display your current Twitter status(es).
 
-## Configuration
+## Hey, wait. You renamed the folder!!
 
-Navigate to the admin area and under the Plugins section select the `Twits` icon.
+Yeah, I did. There's no reason for it to be named `twits_menu` any longer. Plus, now I can maybe add a page with more statuses in the future and it not be weird. (I can neither confirm nor deny the possibility of this happening)
 
 ## OAuth and You!
 
@@ -20,28 +14,14 @@ To obtain OAuth credentials you must create an application through Twitter. Foll
 2. Create a new application and fill in the required fields.
 3. Once your application is created generate an access token.
 4. Click the settings tab and change your Application Type to `Read & Write`.
-5. Now copy over all your credentials into the config area of Twits. **DO NOT SHARE THESE WITH ANYONE!!**
+5. Now copy over all your credentials into the config area of Twits.
 
-If you have any questions feel free to send me a [PM](http://e107.org/e107_plugins/pm/pm.php?send.37).
+**DO NOT SHARE THE INFORMATION YOU OBTAIN WITH ANYONE!!**
 
-# Templates
+## Wiki
 
-The information displayed in the Twits menu can be customized by editing the `twits_template.php` file inside the `e107_plugins/twits_menu/` folder.
-Alternatively, you can save the `twits_template.php` file inside your theme folder and it will be changed on a per theme basis.
-
-## Shortcodes
-
-The following shortcodes are converted inside the template file:
-
-*This section is outdated and will get updated shortly. Refer to the `twits_shortcodes.php` file for all the shortcodes.*
-
-* {USERNAME} → Displays your Twitter username, which links to your Twitter profile.
-* {STATUS} → Displays your current status. #tags and @mentions are automatically converted.
-* {DATESTAMP} → The datestamp of your status update. Converted using e107's convert_date() function.
-* {RETWEET} → Displays a link to allow visitors of your site to retweet the listed status.
-* {REPLY} → Displays a link to allow visitors of your site the ability to reply to the listed status.
-* {FAVORITE} → Displays a link to allow visitors of your site to favorite the listed status.
+The wiki (still under construction) will hold all the information you need on how to customize Twits to work for you. All the shortcodes are listed and explained on what they return when you use them. If a shortcode isn't as customizable as you'd like, let me know and I'll do my best to make it better!
 
 ## Translations
 
-If you would like to translate this plugin, post the translations on [paste2.org](http://paste2.org/) and [PM](http://e107.org/e107_plugins/pm/pm.php?send.37) me the URL generated.
+You can translate Twits easily by [forking](https://help.github.com/articles/fork-a-repo/) this repo, and then submitting a [pull request](https://help.github.com/articles/creating-a-pull-request/) with your translations.
