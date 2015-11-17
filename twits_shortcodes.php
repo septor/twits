@@ -93,17 +93,17 @@ class twits_shortcodes extends e_shortcode
 
 	function sc_retweet($parm='')
 	{
-		return '<a href="javascript:;" onClick="window.open(\'https://twitter.com/intent/retweet?tweet_id='.$this->var['retweet'].'\',\'retweet\',\'scrollbars=yes,width=600,height=375\');">'.LAN_TWITS_MENU_03.'</span></a>';
+		return '<a href="javascript:;" onClick="window.open(\'https://twitter.com/intent/retweet?tweet_id='.$this->var['retweet'].'\',\'retweet\',\'scrollbars=yes,width=600,height=375\');"><span class="glyphicon glyphicon-retweet" aria-label="retweet" aria-hidden="true"></span></a>';
 	}
 
 	function sc_reply($parm='')
 	{
-		return '<a href="javascript:;" onClick="window.open(\'https://twitter.com/intent/tweet?in_reply_to='.$this->var['reply'].'\',\'tweet\',\'scrollbars=yes,width=600,height=375\');">'.LAN_TWITS_MENU_04.'</a>';
+		return '<a href="javascript:;" onClick="window.open(\'https://twitter.com/intent/tweet?in_reply_to='.$this->var['reply'].'\',\'tweet\',\'scrollbars=yes,width=600,height=375\');"><span class="glyphicon glyphicon-share-alt" aria-label="reply" aria-hidden="true"></span><Paste></a>';
 	}
 
 	function sc_favorite($parm='')
 	{
-		return '<a href="javascript:;" onClick="window.open(\'https://twitter.com/intent/favorite?tweet_id='.$this->var['favorite'].'\',\'favorite\',\'scrollbars=yes,width=600,height=375\');">'.LAN_TWITS_MENU_05.'</a>';
+		return '<a href="javascript:;" onClick="window.open(\'https://twitter.com/intent/favorite?tweet_id='.$this->var['favorite'].'\',\'favorite\',\'scrollbars=yes,width=600,height=375\');"><span class="glyphicon glyphicon-heart" aria-label="favorite" aria-hidden="true"></span></a>';
 	}
 }
 ?>
