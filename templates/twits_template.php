@@ -9,7 +9,7 @@ $TWITS_TEMPLATE['menu'] = '
 		{USER_URL}
 	</p>
 	<p class="center">
-		Tweets: {USER_TWEETS}, Following: {USER_FOLLOWING}, Followers:{USER_FOLLOWERS}
+		{USER_TWEETS} {USER_FOLLOWING} {USER_FOLLOWERS}
 	</p>
 </div>
 <div class="clearfix"></div>
